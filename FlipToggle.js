@@ -89,7 +89,9 @@ class FlipToggle extends React.Component {
   componentWillReceiveProps(nextProps) {
 
     const {
-      duration
+      duration,
+      onAnimationEnd,
+      onAnimationStart
     } = this.props;
 
     if (!nextProps.labelStyle.fontSize) {
