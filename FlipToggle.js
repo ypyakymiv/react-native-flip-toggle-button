@@ -38,7 +38,10 @@ class FlipToggle extends React.Component {
     labelStyle: PropTypes.object,
     changeToggleStateOnLongPress: PropTypes.bool,
     onToggle: PropTypes.func.isRequired,
-    onToggleLongPress: PropTypes.func
+    onToggleLongPress: PropTypes.func,
+    onAnimationStart: PropTypes.func,
+    onAnimationEnd: PropTypes.func,
+    duration: PropTypes.number
   };
 
   static defaultProps = {
@@ -84,6 +87,11 @@ class FlipToggle extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+
+    const {
+      duration
+    } = this.props;
+
     if (!nextProps.labelStyle.fontSize) {
       labelStyle = {
         ...nextProps.labelStyle,
@@ -99,11 +107,21 @@ class FlipToggle extends React.Component {
     } else {
       toValue = 0;
     }
-    Animated.timing(this.offsetX, {
-      toValue: toValue,
-      duration: 300,
-      useNativeDriver: true,
-    }).start();
+    if(onAnimationStart)
+      setTimeout(onAnimationStart, 0);
+    if(onAnimationEnd)
+      Animated.timing(this.offsetX, {
+        toValue: toValue,
+        duration: duration||300,
+        useNativeDriver: true,
+      }).start(onAnimationEnd);
+    else
+      Animated.timing(this.offsetX, {
+        toValue: toValue,
+        duration: duration||300,
+        useNativeDriver: true,
+      }).start(onAnimationEnd);
+
   }
 
   calculateDimensions = (toggleProps) => {
