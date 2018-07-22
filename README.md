@@ -4,6 +4,8 @@
 
 A cross-platform customisable toggle button built upon react-native's TouchableOpacity and Animated APIs.
 
+### Added animation callbacks!
+### ---ypyakymiv
 
 ### Why flip toggle?
 
