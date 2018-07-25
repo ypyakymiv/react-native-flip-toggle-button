@@ -122,7 +122,7 @@ class FlipToggle extends React.Component {
         toValue: toValue,
         duration: duration||300,
         useNativeDriver: true,
-      }).start(onAnimationEnd);
+      }).start();
 
   }
 
