@@ -109,7 +109,7 @@ class FlipToggle extends React.Component {
     } else {
       toValue = 0;
     }
-    if(onAnimationStart)
+    if(onAnimationStart && toValue != this.offsetX)
       setTimeout(onAnimationStart, 0);
     if(onAnimationEnd)
       Animated.timing(this.offsetX, {
